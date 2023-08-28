@@ -49,14 +49,14 @@ font-size: 84px;
 
 const PASSWORD = 'A&E';
 
-const LocalStorageAuthedKey = "IS_AUTHED";
+const AuthCookieKey = "IS_AUTHED";
 
 const isAuthed = () => {
-  return !!Cookies.get(LocalStorageAuthedKey)
+  return !!Cookies.get(AuthCookieKey)
 }
 
-const setAuthed = () => {
-  return !!Cookies.set(LocalStorageAuthedKey, "AUTHED", {
+const setAuthCookie = () => {
+  return !!Cookies.set(AuthCookieKey, "AUTHED", {
     expires: 30,
   });
 }
@@ -68,6 +68,7 @@ export const App = () => {
 
   const checkPassword = () => {
     if (password === PASSWORD) {
+      setAuthCookie();
       setAuthed(true);
     }
   }
