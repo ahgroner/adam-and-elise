@@ -18,7 +18,7 @@ const theme = createTheme({
         font-style: normal;
         font-display: swap;
         font-weight: 400;
-        src: url(/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf) format('truetype');
+        src: url(${process.env.PUBLIC_URL}/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf) format('truetype');
       }
       `,
     },
@@ -43,7 +43,7 @@ font-size: 84px;
   }
 
   @media (min-width: 1201px) {
-    font-size: 160px;
+    font-size: 120px;
   }
 `;
 
@@ -107,7 +107,7 @@ export const App = () => {
           <Box sx={{
             width: '100vw',
             height: '80vh',
-            backgroundImage: "url('/sunnys.jpeg')",
+            backgroundImage: `url('${process.env.PUBLIC_URL}/sunnys.jpeg')`,
             backgroundSize: "cover",
             backgroundPositionY: "center",
             backgroundPositionX: "center",
