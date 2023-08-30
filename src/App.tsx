@@ -8,42 +8,39 @@ import { ThemeProvider } from '@emotion/react';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'DMSerif',
+    fontFamily: "'DM Serif Text', monospace ",
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-      @font-face {
-        font-family: 'DMSerif';
-        font-style: normal;
-        font-display: swap;
-        font-weight: 400;
-        src: url(${process.env.PUBLIC_URL}/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf) format('truetype');
-      }
-      `,
-    },
   },
 });
+
+const colors = {
+  tan: '#f3edd8',
+  textGreen: "#1e6550"
+}
 
 
 const ResponsiveBanner = styled(Typography)`
 position: absolute;
-text-align: center;
+text-align: end;
 width: 100%;
 color: white;
 bottom: 0;
+line-height: 0.75;
+padding-right: 5vw;
+padding-bottom: 5vw;
 
-font-size: 84px;
+font-size: 120px;
   @media (max-width: 750px) {
-    font-size: 84px;
+    font-size: 120px;
   }
 
   @media (min-width: 751px) and (max-width: 1200px) {
-    font-size: 120px;
+    font-size: 140px;
   }
 
   @media (min-width: 1201px) {
-    font-size: 120px;
+    font-size: 180px;
   }
 `;
 
@@ -87,14 +84,14 @@ export const App = () => {
           <Typography variant="h5">
             Please enter a password
           </Typography>
-          <TextField placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} 
-          onKeyDown={e => {
-            console.log('keydown');
-            if (e.key === 'Enter' || e.keyCode === 13) {
-              console.log('isEnter');
-              checkPassword();
-            }
-          }}
+          <TextField placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={e => {
+              console.log('keydown');
+              if (e.key === 'Enter' || e.keyCode === 13) {
+                console.log('isEnter');
+                checkPassword();
+              }
+            }}
           />
           <Button
             variant="contained"
@@ -113,10 +110,10 @@ export const App = () => {
             backgroundPositionX: "center",
             position: 'relative'
           }} >
-            <ResponsiveBanner>Save the date</ResponsiveBanner>
+            <ResponsiveBanner fontWeight={400}>Save <br /> the<br /> date</ResponsiveBanner>
           </Box>
-          <Box sx={{ textAlign: 'center', pt: '120px' }}>
-            <Typography variant="h3" sx={{ color: "#1e6550" }}>
+          <Box sx={{ textAlign: 'center', py: '120px', background: colors.tan }}>
+            <Typography variant="h3" sx={{ color: colors.textGreen }}>
               <div>
                 Adam Groner & Elise Levin-Güracar
               </div>
