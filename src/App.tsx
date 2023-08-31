@@ -64,7 +64,7 @@ export const App = () => {
   const [password, setPassword] = useState<string>('');
 
   const checkPassword = () => {
-    if (password === PASSWORD) {
+    if (password.toLowerCase() === PASSWORD.toLowerCase()) {
       setAuthCookie();
       setAuthed(true);
     }
