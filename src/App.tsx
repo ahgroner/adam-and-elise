@@ -127,15 +127,17 @@ export const App = () => {
           </Box>
 
           <Divider sx={{ my: 4 }} />
-          <Typography variant="h3">
-            Schedule
-          </Typography>
-          <Typography sx={{ fontSize: 24 }}>
-            Saturday, June 29, evening | Welcome event
-          </Typography>
-          <Typography sx={{ fontSize: 24 }}>
-            Sunday June 30 4pm-10pm | Ceremony and reception
-          </Typography>
+          <Box sx={{ p: 4 }}>
+            <Typography variant="h3">
+              Schedule
+            </Typography>
+            <Typography sx={{ fontSize: 24 }}>
+              Saturday June 29, evening | Welcome event
+            </Typography>
+            <Typography sx={{ fontSize: 24 }}>
+              Sunday June 30 4pm-10pm | Ceremony and reception
+            </Typography>
+          </Box>
           <Box sx={{ pb: '200px', mt: 6, background: '#1e6550', color: 'white' }}>
             {`A&E designs <3`}
           </Box>
