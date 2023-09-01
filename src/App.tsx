@@ -65,7 +65,7 @@ export const App = () => {
   const [password, setPassword] = useState<string>('');
 
   const checkPassword = () => {
-    if (password.toLowerCase() === PASSWORD.toLowerCase()) {
+    if (password.toLowerCase().trim() === PASSWORD.toLowerCase()) {
       setAuthCookie();
       setAuthed(true);
     }
@@ -140,9 +140,9 @@ export const App = () => {
         <Box sx={{ p: 4 }}>
           <Title>Travel Recommendations</Title>
           For guests visiting from out of town:
-          We recommend guests fly into San Jose International Airport (SJC) which is the closest major airport to Pacific Grove. The drive from SJC to Carmel is 1.5 to 2 hours long without traffic
+          We recommend guests fly into San Jose International Airport (SJC) which is the closest major airport to Pacific Grove. The drive from SJC to Pacific Grove is 1.5 to 2 hours long without traffic
 
-          You can also fly into San Francisco International Airport (SFO) but that will add an additional 45 minutes to and hour+ to the trip depending on traffic
+          You can also fly into San Francisco International Airport (SFO) but that will add an additional 45 minutes to and hour+ to the trip depending on traffic.
         </Box>
         <Box sx={{ pb: '200px', mt: 6, background: '#1e6550', color: 'white' }}>
           {`A&E designs <3`}
