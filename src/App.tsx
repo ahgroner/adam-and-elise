@@ -144,10 +144,18 @@ export const App = () => {
         <Section>
           <Title>Schedule</Title>
           <Typography sx={{ fontSize: 24 }}>
-            Saturday June 29, evening | Welcome event
+            Saturday June 29, evening | Welcome Event
+          </Typography>
+          <Typography sx={{ fontSize: 16 }}>
+            George Washington Park picnic area <br/>
+            Sinex and Adder Street, Pacific Grove, CA 93950
           </Typography>
           <Typography sx={{ fontSize: 24 }}>
             Sunday June 30 4pm-10pm | Ceremony and reception
+          </Typography>
+          <Typography sx={{ fontSize: 16 }}>
+            "The Circle" Meadow behind Hearst Social Hall <br/>
+            800 Asilomar Ave, Pacific Grove, CA 93950
           </Typography>
         </Section>
         <Divider sx={{ my: 4 }} />
@@ -173,8 +181,8 @@ export const App = () => {
               <b>San Francisco International Airport (SFO)</b> is the next closest major airport. The drive from SFO to Pacific Grove is 2-2.5 hours.
             </p>
             <p>
-              <b>Monterey Regional Airport (MRY)</b> is 15 minutes from Asilomar. Has a few flights every day
-              but most will include at least a short layover from/to major cities.
+              <b>Monterey Regional Airport (MRY)</b> is 15 minutes from Asilomar. It has a few flights every day
+              but most will include at least a short layover from/to major cities. Car rental is available from this airport as well.
             </p>
           </Typography>
         </Section>
@@ -200,7 +208,7 @@ export const App = () => {
             <p>
               <i>Alternative options</i> <br />
               There are many other hotel options in the area include a few inns
-              that are right across the street from Asilomar.
+              that are right across the street from Asilomar and an easy walk from our events.
             </p>
           </Typography>
         </Section>
