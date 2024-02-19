@@ -1,32 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
+// @ts-ignore
+import JotformEmbed from 'react-jotform-embed';
 
 import {
-  Button,
-  Dialog,
-  DialogContent,
-  Divider,
-  TextField,
-  Typography,
+  Button, Divider, Typography,
   TypographyProps,
   createTheme,
-  styled,
+  styled
 } from "@mui/material";
-import Cookies from "js-cookie";
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "'DM Serif Text', monospace ",
-  },
-  components: {},
-});
+import { Auth } from "./Auth";
 
 const colors = {
   tan: "#f3edd8",
   textGreen: "#1e6550",
 };
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Raleway",
+  },
+  palette: {
+    primary: {
+      main: colors.textGreen,
+    }
+  },
+  components: {},
+});
+
+
 
 const ResponsiveBanner = styled(Typography)`
   position: absolute;
@@ -37,84 +41,63 @@ const ResponsiveBanner = styled(Typography)`
   line-height: 0.75;
   padding-right: 5vw;
   padding-bottom: 5vw;
+  font-weight: 200;
 
   font-size: 120px;
   @media (max-width: 750px) {
-    font-size: 120px;
+    font-size: 80px;
   }
 
   @media (min-width: 751px) and (max-width: 1200px) {
-    font-size: 140px;
+    font-size: 100px;
   }
 
   @media (min-width: 1201px) {
-    font-size: 180px;
+    font-size: 120px;
   }
 `;
 
-const PASSWORD = "A&E";
-
-const AuthCookieKey = "IS_AUTHED";
-
-const isAuthed = () => {
-  return !!Cookies.get(AuthCookieKey);
-};
-
-const setAuthCookie = () => {
-  return !!Cookies.set(AuthCookieKey, "AUTHED", {
-    expires: 30,
-  });
-};
-
 const Title = (props: TypographyProps) => (
-  <Typography {...props} variant="h3" />
+  <section id={typeof props.children === 'string' ? props.children : ""} style={{ paddingTop: '60px' }}>
+    <Typography {...props} variant="h3" textTransform="uppercase" />
+  </section>
 );
-export const App = () => {
-  const [authed, setAuthed] = useState<boolean>(isAuthed());
-  const [password, setPassword] = useState<string>("");
 
-  const checkPassword = () => {
-    if (password.toLowerCase().trim() === PASSWORD.toLowerCase()) {
-      setAuthCookie();
-      setAuthed(true);
-    }
-  };
+const getDays = () => {
+  const june30_2024 = new Date(2024, 5, 30); // Note: Months are zero-based (0-Jan, 1-Feb, ...)  
+  const difference = june30_2024.getTime() - (new Date()).getTime();
+  return Math.ceil(difference / (1000 * 60 * 60 * 24));
+}
+
+const Nav = () => {
+  return (
+    <Box sx={{
+      position: 'fixed',
+      top: 0,
+      width: '100%',
+      background: 'rgba(255,255,255,0.5)',
+      zIndex: 1000,
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
+      {['Schedule', 'Travel', 'Lodging', 'rsvp', 'Registry'].map(section => (
+        <a href={`#${section}`}>
+          <Button>{section}</Button>
+        </a>
+      ))}
+    </Box>
+  );
+}
+
+
+export const App = () => {
+
   return (
     <ThemeProvider theme={theme}>
-      {
-        <Dialog
-          open={!authed}
-          slotProps={{
-            backdrop: {
-              sx: {
-                background: "rgba(0,0,0, 0.9)",
-              },
-            },
-          }}
-        >
-          <DialogContent>
-            <Typography variant="h5">Please enter a password</Typography>
-            <TextField
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => {
-                console.log("keydown");
-                if (e.key === "Enter" || e.keyCode === 13) {
-                  console.log("isEnter");
-                  checkPassword();
-                }
-              }}
-            />
-            <Button variant="contained" onClick={checkPassword}>
-              Enter
-            </Button>
-          </DialogContent>
-        </Dialog>
-      }
+      <Auth />
       <div className="App">
+        <Nav />
         <CssBaseline />
-
         <Box
           sx={{
             width: "100vw",
@@ -127,34 +110,36 @@ export const App = () => {
           }}
         >
           <ResponsiveBanner fontWeight={400}>
-            Save <br /> the
-            <br /> date
+            {`${getDays()} days to go!`.toUpperCase()}
           </ResponsiveBanner>
         </Box>
-        <Box sx={{ textAlign: "center", py: "120px", background: colors.tan }}>
+        <Box sx={{ textAlign: "center", py: "50px", background: colors.tan }}>
           <Section>
-            <Typography variant="h3" sx={{ color: colors.textGreen }}>
-              <div>Adam Groner & Elise Levin-Güracar</div>
+            <Typography variant="h3" sx={{ color: colors.textGreen }} pb={2}>
+              <div>ADAM GRONER & <br /> ELISE LEVIN-GÜRACAR</div>
+              <br />
               <div>June 30, 2024</div>
               <div>Asilomar Conference Grounds</div>
             </Typography>
+            <a href="#rsvp"><Button sx={{ fontSize: 30, background: colors.textGreen }} variant="contained" size="large">RSVP</Button></a>
           </Section>
         </Box>
-        <Divider sx={{ mb: 4 }} />
+        {/* <Divider sx={{ mb: 4 }} /> */}
         <Section>
           <Title>Schedule</Title>
           <Typography sx={{ fontSize: 24 }}>
             Saturday June 29, evening | Welcome Event
           </Typography>
           <Typography sx={{ fontSize: 16 }}>
-            George Washington Park picnic area <br/>
+            George Washington Park picnic area <br />
             Sinex and Adder Street, Pacific Grove, CA 93950
           </Typography>
+          <br />
           <Typography sx={{ fontSize: 24 }}>
             Sunday June 30 4pm-10pm | Ceremony and reception
           </Typography>
           <Typography sx={{ fontSize: 16 }}>
-            "The Circle" Meadow behind Hearst Social Hall <br/>
+            "The Circle" Meadow behind Hearst Social Hall <br />
             800 Asilomar Ave, Pacific Grove, CA 93950
           </Typography>
         </Section>
@@ -212,10 +197,7 @@ export const App = () => {
             </p>
           </Typography>
         </Section>
-
-        <Box sx={{ pb: "200px", mt: 6, pt: 2, background: colors.textGreen, color: "white" }}>
-          <Section>{`A&E designs <3`}</Section>
-        </Box>
+        <RsvpForm />
       </div>
     </ThemeProvider>
   );
@@ -224,6 +206,7 @@ export const App = () => {
 const Section = styled("div")({
   maxWidth: 800,
   margin: "0px auto",
+  marginBottom: '50px',
 });
 
 const Link = (props: React.HTMLProps<HTMLAnchorElement>) => (
@@ -238,3 +221,23 @@ const Link = (props: React.HTMLProps<HTMLAnchorElement>) => (
     children={props.children}
   />
 );
+
+const RsvpForm = () => {
+  return (
+    <section id="rsvp" style={{ position: 'relative' }}>
+      <JotformEmbed src="https://form.jotform.com/240488027380053" />
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        height: '120px',
+        width: '100%',
+        background: colors.textGreen,
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        {`A&E designs <3`}
+      </div>
+    </section>);
+}
