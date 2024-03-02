@@ -4,17 +4,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import JotformEmbed from 'react-jotform-embed';
 import { Map } from './Map';
 import {
-  Button, Divider, Typography,
+  Button, Divider, Stack, Typography,
   TypographyProps,
   createTheme,
   styled
 } from "@mui/material";
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import { Auth, getAuthStatus, isAuthed } from "./Auth";
+import { Auth, getAuthStatus } from "./Auth";
 import { colors } from './colors';
-import { showFridayInvite } from "./guests";
-import Cookies from "js-cookie";
 
 const theme = createTheme({
   typography: {
@@ -129,14 +127,25 @@ export const App = () => {
           <Title>Schedule</Title>
           {authState.showFridayInvite && (
             <>
-              <Typography sx={{ fontSize: 24 }}>
-                Friday June 28, 6:00pm | Family Shabbat Dinner
-              </Typography>
-              <Typography sx={{ fontSize: 16 }}>
-                Director's Cottage <br />
-                At Asilomar Conference grounds
-              </Typography>
-              <br />
+              <Stack sx={{ 
+                background: colors.textGreen + 40,
+                borderRadius: '8px',
+                p: 2,
+                pb: 0,
+                mb: 1,
+              }}>
+                <Typography sx={{ fontSize: 16 }} fontWeight={800} color={colors.textGreen}>
+                  You're invited! Family only event!
+                </Typography>
+                <Typography sx={{ fontSize: 24 }}>
+                  Friday June 28, 6:00pm | Family Shabbat Dinner
+                </Typography>
+                <Typography sx={{ fontSize: 16 }}>
+                  Director's Cottage <br />
+                  At Asilomar Conference grounds
+                </Typography>
+                <br />
+              </Stack>
             </>
           )}
           <Typography sx={{ fontSize: 24 }}>
