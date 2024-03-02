@@ -1,40 +1,65 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
-    Button,
-    Dialog,
-    DialogContent, Stack,
-    TextField,
-    Typography
+  Button,
+  Dialog,
+  DialogContent, Stack,
+  TextField,
+  Typography
 } from "@mui/material";
 import Cookies from "js-cookie";
+import { isInvited, showFridayInvite } from "./guests";
+import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti'
+import { colors } from './colors';
 
-const PASSWORD = "A&E";
+export const NAME_COOKIE_KEY = "AUTH_NAME";
 
-const AuthCookieKey = "IS_AUTHED";
+export const getAuthStatus = () => checkName(Cookies.get(NAME_COOKIE_KEY))
 
-const isAuthed = () => {
-  return !!Cookies.get(AuthCookieKey);
+export const checkName = (name: string | undefined): AuthState => {
+  return {
+    isInvited: isInvited(name),
+    showFridayInvite: showFridayInvite(name),
+  };
 };
 
-const setAuthCookie = () => {
-  return !!Cookies.set(AuthCookieKey, "AUTHED", {
+const setAuthCookie = (name: string) => {
+  return !!Cookies.set(NAME_COOKIE_KEY, name, {
     expires: 30,
   });
 };
 
-export const Auth = () => {
-    const [authed, setAuthed] = useState<boolean>(isAuthed());
-    const [password, setPassword] = useState<string>("");
-  
-    const checkPassword = () => {
-      if (password.toLowerCase().trim() === PASSWORD.toLowerCase()) {
-        setAuthCookie();
-        setAuthed(true);
-      }
-    };
-    return (
+type AuthState = {
+  isInvited: boolean;
+  showFridayInvite: boolean;
+}
+
+const confettiColors = [colors.tan, colors.textGreen]
+
+export const Auth = ({ authState, setAuthState }: { setAuthState: (state: AuthState) => void; authState: AuthState }) => {
+  const [name, setName] = useState<string>("");
+  const [invalid, setInvalid] = useState<boolean>(false);
+  const { width, height } = useWindowSize()
+  const [confetti, setConfetti] = useState<boolean>(false);
+
+  const checkPassword = () => {
+    const newAuthState = checkName(name)
+    if (newAuthState.isInvited) {
+      setAuthCookie(name);
+      setAuthState(newAuthState);
+      setConfetti(true);
+      setTimeout(() => {
+        setConfetti(false)
+      }, 3000)
+    } else {
+      setInvalid(true)
+    }
+  };
+  return (
+    <>
       <Dialog
-        open={!authed}
+        open={!authState.isInvited}
+        maxWidth="lg"
         slotProps={{
           backdrop: {
             sx: {
@@ -45,22 +70,30 @@ export const Auth = () => {
       >
         <DialogContent>
           <Stack gap={1}>
-            <Typography variant="h5" textTransform="uppercase" > Please enter a password</Typography>
+            <Typography variant="h5" textTransform="uppercase" > Please enter your name</Typography>
             <TextField
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.keyCode === 13) {
                   checkPassword();
                 }
               }}
             />
+            {invalid && (<Typography>Hmm... that name isn't on our invite list. Try the name as printed on your invitation? </Typography>)}
             <Button variant="contained" onClick={checkPassword}>
               Enter Site
             </Button>
           </Stack>
         </DialogContent>
       </Dialog>
-    )
-  }
+      <Confetti
+        width={width}
+        height={height}
+        colors={confettiColors}
+        numberOfPieces={confetti ? 200 : 0}
+      />
+    </>
+  )
+}

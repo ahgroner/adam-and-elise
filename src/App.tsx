@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 // @ts-ignore
 import JotformEmbed from 'react-jotform-embed';
-
+import { Map } from './Map';
 import {
   Button, Divider, Typography,
   TypographyProps,
@@ -11,12 +11,10 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import { Auth } from "./Auth";
-
-const colors = {
-  tan: "#f3edd8",
-  textGreen: "#1e6550",
-};
+import { Auth, getAuthStatus, isAuthed } from "./Auth";
+import { colors } from './colors';
+import { showFridayInvite } from "./guests";
+import Cookies from "js-cookie";
 
 const theme = createTheme({
   typography: {
@@ -80,21 +78,23 @@ const Nav = () => {
       display: 'flex',
       justifyContent: 'center'
     }}>
-      {['Schedule', 'Travel', 'Lodging', 'rsvp', 'Registry'].map(section => (
+      {['Schedule', 'Travel', 'Lodging', 'rsvp'].map(section => (
         <a href={`#${section}`}>
           <Button>{section}</Button>
         </a>
       ))}
+        <Button href="https://www.zola.com/registry/eliseandadam2024">Registry</Button>
     </Box>
   );
 }
 
 
 export const App = () => {
+  const [authState, setAuthState] = useState(getAuthStatus());
 
   return (
     <ThemeProvider theme={theme}>
-      <Auth />
+      <Auth {...{ authState, setAuthState }} />
       <div className="App">
         <Nav />
         <CssBaseline />
@@ -127,6 +127,18 @@ export const App = () => {
         {/* <Divider sx={{ mb: 4 }} /> */}
         <Section>
           <Title>Schedule</Title>
+          {authState.showFridayInvite && (
+            <>
+              <Typography sx={{ fontSize: 24 }}>
+                Friday June 28, 6:00pm | Family Shabbat Dinner
+              </Typography>
+              <Typography sx={{ fontSize: 16 }}>
+                Director's Cottage <br />
+                At Asilomar Conference grounds
+              </Typography>
+              <br />
+            </>
+          )}
           <Typography sx={{ fontSize: 24 }}>
             Saturday June 29, evening | Welcome Event
           </Typography>
@@ -196,6 +208,11 @@ export const App = () => {
               that are right across the street from Asilomar and an easy walk from our events.
             </p>
           </Typography>
+        </Section>
+        <Divider sx={{ mb: 2 }} />
+
+        <Section>
+          {/* <Map /> */}
         </Section>
         <RsvpForm />
       </div>
