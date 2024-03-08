@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 // @ts-ignore
-import JotformEmbed from 'react-jotform-embed';
-import { Map } from './Map';
+// import { Map } from './Map';
+import { Rsvp } from './Rsvp';
 import {
   Button, Divider, Stack, Typography,
   TypographyProps,
@@ -11,8 +11,10 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import { Auth, getAuthStatus } from "./Auth";
+import { Auth, getCachedGuestInfo } from "./Auth";
 import { colors } from './colors';
+import Confetti from "react-confetti";
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 const theme = createTheme({
   typography: {
@@ -53,9 +55,9 @@ const ResponsiveBanner = styled(Typography)`
   }
 `;
 
-const Title = (props: TypographyProps) => (
-  <section id={typeof props.children === 'string' ? props.children : ""} style={{ paddingTop: '60px' }}>
-    <Typography {...props} variant="h3" textTransform="uppercase" />
+export const Title = (props: TypographyProps) => (
+  <section id={typeof props.children === 'string' ? props.children : ""} >
+    <Typography sx={{ paddingTop: '60px' }} {...props} variant="h3" textTransform="uppercase" />
   </section>
 );
 
@@ -76,23 +78,41 @@ const Nav = () => {
       display: 'flex',
       justifyContent: 'center'
     }}>
-      {['Schedule', 'Travel', 'Lodging', 'rsvp'].map(section => (
+      {['Schedule', 'Travel', 'Lodging', 'RSVP'].map(section => (
         <a href={`#${section}`}>
           <Button>{section}</Button>
         </a>
       ))}
-        <Button href="https://www.zola.com/registry/eliseandadam2024">Registry</Button>
+      <Button href="https://www.zola.com/registry/eliseandadam2024">Registry</Button>
     </Box>
   );
 }
+const confettiColors = [colors.tan, colors.textGreen]
 
 
 export const App = () => {
-  const [authState, setAuthState] = useState(getAuthStatus());
+  const [guestInfo, setGuestInfo] = useState(getCachedGuestInfo());
+
+  const [confetti, setConfetti] = useState<boolean>(false);
+
+  const triggerConfetti = () => {
+    setConfetti(true);
+    setTimeout(() => {
+      setConfetti(false)
+    }, 3000)
+  };
+
+  const { width, height } = useWindowSize()
 
   return (
     <ThemeProvider theme={theme}>
-      <Auth {...{ authState, setAuthState }} />
+      <Confetti
+        width={width}
+        height={height}
+        colors={confettiColors}
+        numberOfPieces={confetti ? 200 : 0}
+      />
+      {!guestInfo && <Auth {...{ setGuestInfo, triggerConfetti }} />}
       <div className="App">
         <Nav />
         <CssBaseline />
@@ -119,15 +139,14 @@ export const App = () => {
               <div>June 30, 2024</div>
               <div>Asilomar Conference Grounds</div>
             </Typography>
-            <a href="#rsvp"><Button sx={{ fontSize: 30, background: colors.textGreen }} variant="contained" size="large">RSVP</Button></a>
+            <a href="#RSVP"><Button sx={{ fontSize: 30, background: colors.textGreen }} variant="contained" size="large">RSVP</Button></a>
           </Section>
         </Box>
-        {/* <Divider sx={{ mb: 4 }} /> */}
         <Section>
           <Title>Schedule</Title>
-          {authState.showFridayInvite && (
+          {guestInfo?.showFridayInvite && (
             <>
-              <Stack sx={{ 
+              <Stack sx={{
                 background: colors.textGreen + 40,
                 borderRadius: '8px',
                 p: 2,
@@ -218,18 +237,16 @@ export const App = () => {
             </p>
           </Typography>
         </Section>
-        <Divider sx={{ mb: 2 }} />
-
         <Section>
           {/* <Map /> */}
         </Section>
-        <RsvpForm />
+        {guestInfo ? <Rsvp {...{ guestInfo, setGuestInfo }} /> : <Stack sx={{ height: '1000px', background: colors.textGreen }}/>}
       </div>
     </ThemeProvider>
   );
 };
 
-const Section = styled("div")({
+export const Section = styled(Stack)({
   maxWidth: 800,
   margin: "0px auto",
   marginBottom: '50px',
@@ -247,23 +264,3 @@ const Link = (props: React.HTMLProps<HTMLAnchorElement>) => (
     children={props.children}
   />
 );
-
-const RsvpForm = () => {
-  return (
-    <section id="rsvp" style={{ position: 'relative' }}>
-      <JotformEmbed src="https://form.jotform.com/240488027380053" />
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        height: '120px',
-        width: '100%',
-        background: colors.textGreen,
-        color: 'white',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        {`A&E designs <3`}
-      </div>
-    </section>);
-}

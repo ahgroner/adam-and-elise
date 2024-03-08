@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Dialog,
@@ -7,21 +7,9 @@ import {
   Typography
 } from "@mui/material";
 import Cookies from "js-cookie";
-import { isInvited, showFridayInvite } from "./guests";
-import useWindowSize from 'react-use/lib/useWindowSize'
-import Confetti from 'react-confetti'
-import { colors } from './colors';
+import { GuestInfo, getGuestInfo } from "./guests";
 
 export const NAME_COOKIE_KEY = "AUTH_NAME";
-
-export const getAuthStatus = () => checkName(Cookies.get(NAME_COOKIE_KEY))
-
-export const checkName = (name: string | undefined): AuthState => {
-  return {
-    isInvited: isInvited(name),
-    showFridayInvite: showFridayInvite(name),
-  };
-};
 
 const setAuthCookie = (name: string) => {
   return !!Cookies.set(NAME_COOKIE_KEY, name, {
@@ -29,28 +17,31 @@ const setAuthCookie = (name: string) => {
   });
 };
 
-type AuthState = {
-  isInvited: boolean;
-  showFridayInvite: boolean;
+export const getAuthCookie = () => {
+  return Cookies.get(NAME_COOKIE_KEY)
 }
 
-const confettiColors = [colors.tan, colors.textGreen]
+export const clearAuthCookie = () => {
+  return Cookies.remove(NAME_COOKIE_KEY)
+}
 
-export const Auth = ({ authState, setAuthState }: { setAuthState: (state: AuthState) => void; authState: AuthState }) => {
+
+export const getCachedGuestInfo = () => getGuestInfo(getAuthCookie())
+
+
+export const Auth = ({ setGuestInfo, triggerConfetti }: {
+  setGuestInfo: (state: GuestInfo) => void;
+  triggerConfetti: () => void;
+}) => {
   const [name, setName] = useState<string>("");
   const [invalid, setInvalid] = useState<boolean>(false);
-  const { width, height } = useWindowSize()
-  const [confetti, setConfetti] = useState<boolean>(false);
 
   const checkPassword = () => {
-    const newAuthState = checkName(name)
-    if (newAuthState.isInvited) {
+    const newGuestInfo = getGuestInfo(name)
+    if (!!newGuestInfo) {
       setAuthCookie(name);
-      setAuthState(newAuthState);
-      setConfetti(true);
-      setTimeout(() => {
-        setConfetti(false)
-      }, 3000)
+      setGuestInfo(newGuestInfo);
+      triggerConfetti();
     } else {
       setInvalid(true)
     }
@@ -58,7 +49,7 @@ export const Auth = ({ authState, setAuthState }: { setAuthState: (state: AuthSt
   return (
     <>
       <Dialog
-        open={!authState.isInvited}
+        open={true}
         maxWidth="lg"
         slotProps={{
           backdrop: {
@@ -72,7 +63,7 @@ export const Auth = ({ authState, setAuthState }: { setAuthState: (state: AuthSt
           <Stack gap={1}>
             <Typography variant="h5" textTransform="uppercase" > Please enter your name</Typography>
             <TextField
-              placeholder="Password"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={(e) => {
@@ -88,12 +79,6 @@ export const Auth = ({ authState, setAuthState }: { setAuthState: (state: AuthSt
           </Stack>
         </DialogContent>
       </Dialog>
-      <Confetti
-        width={width}
-        height={height}
-        colors={confettiColors}
-        numberOfPieces={confetti ? 200 : 0}
-      />
     </>
   )
 }
