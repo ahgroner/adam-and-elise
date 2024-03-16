@@ -133,7 +133,7 @@ export const Rsvp = ({
             }
             return value !== undefined;
         });
-    }, [formState, includeGuest]);
+    }, [formState, includeGuestBool]);
 
     const onSubmit = async (e: any) => {
         e.preventDefault();

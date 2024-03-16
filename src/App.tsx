@@ -15,6 +15,7 @@ import { Auth, getCachedGuestInfo } from "./Auth";
 import { colors } from './colors';
 import Confetti from "react-confetti";
 import useWindowSize from 'react-use/lib/useWindowSize';
+import { Gallery } from "./Gallery";
 
 const theme = createTheme({
   typography: {
@@ -78,7 +79,7 @@ const Nav = () => {
       display: 'flex',
       justifyContent: 'center'
     }}>
-      {['Schedule', 'Travel', 'Lodging', 'RSVP'].map(section => (
+      {['Schedule', 'Travel', 'Lodging', 'Photos', 'RSVP'].map(section => (
         <a href={`#${section}`}>
           <Button>{section}</Button>
         </a>
@@ -236,6 +237,11 @@ export const App = () => {
               that are right across the street from Asilomar and an easy walk from our events.
             </p>
           </Typography>
+        </Section>
+        <Divider />
+        <Section>
+          <Title>Photos</Title>
+          <Gallery />
         </Section>
         <Section>
           {/* <Map /> */}
