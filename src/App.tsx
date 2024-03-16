@@ -77,8 +77,9 @@ const Nav = () => {
       background: 'rgba(255,255,255,0.5)',
       zIndex: 1000,
       display: 'flex',
-      justifyContent: 'center'
-    }}>
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+  }}>
       {['Schedule', 'Travel', 'Lodging', 'Photos', 'RSVP'].map(section => (
         <a href={`#${section}`}>
           <Button>{section}</Button>
