@@ -64,12 +64,15 @@ const guests = guestData.map(guestConcat => {
     const showFridayInvite = guestConcat.startsWith("*");
     const withoutStar = guestConcat.replace("*", "");
     const names = withoutStar.split(',').map(name => name.trim());
+    const namesLower = names.map(name => name.toLowerCase());
+
     const hasPlusOne = guestConcat.includes("Guest");
 
     return {
         names,
         showFridayInvite,
         hasPlusOne,
+        namesLower
     }
 });
 
@@ -81,8 +84,12 @@ export type GuestInfo = {
 
 
 export const getGuestInfo = (name?: string): GuestInfo | undefined => {
-    if(name === "Guest") {
+    if(!name || name === "Guest") {
         return undefined;
     }
-    return guests.find(({ names }) => name && names.includes(name));
+
+    const nameLower = name.toLowerCase();
+    return guests.find(({ namesLower }) => {
+        return namesLower.includes(nameLower);
+    });
 }
