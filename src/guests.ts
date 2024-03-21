@@ -23,7 +23,7 @@ const guestData = [
     "*Mayer Steibel",
     "Zach Porges,Alyssa Braver",
     "Ryan Kass,Aly Vanderwalde",
-    "Kaityn Kwan,Eric Morris",
+    "Kaitlyn Kwan,Eric Morris",
     "Rony Krell,Lisa Fierstein",
     "Dan Greener,Hannah Isakowitz",
     "Ethan Joseph,Guest",
