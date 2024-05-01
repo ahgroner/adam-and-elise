@@ -190,7 +190,7 @@ export const App = () => {
           <Title>FAQ</Title>
           <b>What is the dress code?</b>
           Semi-formal attire recommended. <br />
-          For those who’d like a bit more direction: Suits or slacks + button down. Cocktails or summer dress or romper. A tuxedo or ball gown may be overdressed!
+          For those who’d like a bit more direction: Suits or slacks + button down. Cocktail or summer dress or romper. A tuxedo or ball gown may be overdressed!
           The weather will be 50-65°F and possibly windy, so dress accordingly
           <br /><br />
           <b>What can I expect from a Jewish Wedding?</b>
