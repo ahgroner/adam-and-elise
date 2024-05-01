@@ -80,7 +80,7 @@ const Nav = () => {
       justifyContent: 'center',
       flexWrap: 'wrap',
   }}>
-      {['Schedule', 'Travel', 'Lodging', 'Photos', 'RSVP'].map(section => (
+      {['Schedule', 'Travel', 'FAQ', 'Lodging', 'Photos', 'RSVP'].map(section => (
         <a href={`#${section}`}>
           <Button>{section}</Button>
         </a>
@@ -184,6 +184,26 @@ export const App = () => {
             "The Circle" Meadow behind Hearst Social Hall <br />
             800 Asilomar Ave, Pacific Grove, CA 93950
           </Typography>
+        </Section>
+        <Divider sx={{ my: 4 }} />
+        <Section>
+          <Title>FAQ</Title>
+          <b>What is the dress code?</b>
+          Semi-formal attire recommended. <br />
+          For those who’d like a bit more direction: Suits or slacks + button down. Cocktails or summer dress or romper. A tuxedo or ball gown may be overdressed!
+          The weather will be 50-65°F and possibly windy, so dress accordingly
+          <br /><br />
+          <b>What can I expect from a Jewish Wedding?</b>
+          The ceremony will include rituals blessings in both Hebrew and English. In leiu of an alter, Elise and Adam will be gathered under a Chuppah, a ritual canopy symbolizing the home they will build together.
+          <br /><br />
+          <b>What else is there to do in the area?</b>
+          - Asilomar State Beach (right across the street from the hotel!) <br/>
+          - Take a scenic drive down 17 Mile Drive <br/>
+          - Visit the Monterey Aquarium <br/>
+          - Walk Ocean View boulevard to Lover's point. It is seal pupping season you will probably see some! <br/>
+          - Explore historic Fisherman's Wharf or Cannery Row <br/>
+          - Downtown Carmel and Carmel State beach<br/>
+          <br/>
         </Section>
         <Divider sx={{ my: 4 }} />
         <Section>
