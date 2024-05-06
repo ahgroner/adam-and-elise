@@ -58,8 +58,12 @@ const guestData = [
     "Ellen Arad,Graham Arad",
     "Marc Gross,Ellen Gross",
     "Robin Bronk,Richard Schechtman",
-    "Kathy Lane, Missy Foegal",
-    "David Maskasky, Madhura Maskasky"
+    "Kathy Lane,Missy Foegal",
+    "David Maskasky,Madhura Maskasky",
+    "Edmond Macaluso,Sarah Macaluso",
+    "Abbey Zeitlin, Noah Burbank, Ari Burbank",
+    "Candice Benge, Oliver Steele",
+    "Faryn Borella, Guest"
 ];
 
 const guests = guestData.map(guestConcat => {
