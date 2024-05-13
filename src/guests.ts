@@ -63,7 +63,10 @@ const guestData = [
     "Edmond Macaluso,Sarah Macaluso",
     "Abbey Zeitlin, Noah Burbank, Ari Burbank",
     "Candice Benge, Oliver Steele",
-    "Faryn Borella, Guest"
+    "Faryn Borella, Guest",
+    "Carolina Zamora and Logan Kelley",
+    "Elise Rulifson, Dave Brisson, and Bo Brisson-Rulifson",
+    "Jaime McConachie, Guest"
 ];
 
 const guests = guestData.map(guestConcat => {
