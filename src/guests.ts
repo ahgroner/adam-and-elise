@@ -65,7 +65,7 @@ const guestData = [
     "Candice Benge, Oliver Steele",
     "Faryn Borella, Guest",
     "Carolina Zamora and Logan Kelley",
-    "Elise Rulifson, Dave Brisson, and Bo Brisson-Rulifson",
+    "Eliese Rulifson, Dave Brisson, and Bo Brisson-Rulifson",
     "Jaime McConachie, Guest"
 ];
 
