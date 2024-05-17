@@ -66,7 +66,10 @@ const guestData = [
     "Faryn Borella, Guest",
     "Carolina Zamora and Logan Kelley",
     "Eliese Rulifson, Dave Brisson, and Bo Brisson-Rulifson",
-    "Jaime McConachie, Guest"
+    "Jaime McConachie, Guest",
+    "Amanda Astey, Caleb Astey",
+    "Sarah Al Sayadi, Robert Mitchell",
+    "Matt Mistele, Guest",
 ];
 
 const guests = guestData.map(guestConcat => {
