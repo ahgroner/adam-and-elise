@@ -79,7 +79,7 @@ const Nav = () => {
       display: 'flex',
       justifyContent: 'center',
       flexWrap: 'wrap',
-  }}>
+    }}>
       {['Schedule', 'Travel', 'FAQ', 'Lodging', 'Photos', 'RSVP'].map(section => (
         <a href={`#${section}`}>
           <Button>{section}</Button>
@@ -170,12 +170,18 @@ export const App = () => {
             </>
           )}
           <Typography sx={{ fontSize: 24 }}>
-            Saturday June 29, evening | Welcome Event
+            Saturday June 29, 4:30pm-7:30pm | Welcome Picnic
           </Typography>
           <Typography sx={{ fontSize: 16 }}>
-            George Washington Park picnic area <br />
-            Sinex and Adder Street, Pacific Grove, CA 93950
+            George Washington Park
+            <br />
+            Picnic area by the baseball field, across the street from <a target="_blank" href="https://www.google.com/maps/place/619+Alder+St,+Pacific+Grove,+CA+93950"> 619 Alder St </a>
+            <br />
+            (About a 10 minute walk from Asilomar or a 3 minute drive!)
+            <br />
+            Come for lawn games, drinks and pizza. Casual, comfy (warm) attire!
           </Typography>
+
           <br />
           <Typography sx={{ fontSize: 24 }}>
             Sunday June 30 4pm-10pm | Ceremony and reception
@@ -197,13 +203,13 @@ export const App = () => {
           The ceremony will include rituals blessings in both Hebrew and English. In leiu of an alter, Elise and Adam will be gathered under a Chuppah, a ritual canopy symbolizing the home they will build together.
           <br /><br />
           <b>What else is there to do in the area?</b>
-          - Asilomar State Beach (right across the street from the hotel!) <br/>
-          - Take a scenic drive down 17 Mile Drive <br/>
-          - Visit the Monterey Aquarium <br/>
-          - Walk Ocean View boulevard to Lover's point. It is seal pupping season you will probably see some! <br/>
-          - Explore historic Fisherman's Wharf or Cannery Row <br/>
-          - Downtown Carmel and Carmel State beach<br/>
-          <br/>
+          - Asilomar State Beach (right across the street from the hotel!) <br />
+          - Take a scenic drive down 17 Mile Drive <br />
+          - Visit the Monterey Aquarium <br />
+          - Walk Ocean View boulevard to Lover's point. It is seal pupping season you will probably see some! <br />
+          - Explore historic Fisherman's Wharf or Cannery Row <br />
+          - Downtown Carmel and Carmel State beach<br />
+          <br />
         </Section>
         <Divider sx={{ my: 4 }} />
         <Section>
@@ -267,7 +273,7 @@ export const App = () => {
         <Section>
           {/* <Map /> */}
         </Section>
-        {guestInfo ? <Rsvp {...{ guestInfo, setGuestInfo }} /> : <Stack sx={{ height: '1000px', background: colors.textGreen }}/>}
+        {guestInfo ? <Rsvp {...{ guestInfo, setGuestInfo }} /> : <Stack sx={{ height: '1000px', background: colors.textGreen }} />}
       </div>
     </ThemeProvider>
   );
