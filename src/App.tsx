@@ -200,7 +200,7 @@ export const App = () => {
           The weather will be 50-65°F and possibly windy, so dress accordingly
           <br /><br />
           <b>What can I expect from a Jewish Wedding?</b>
-          The ceremony will include rituals blessings in both Hebrew and English. In leiu of an alter, Elise and Adam will be gathered under a Chuppah, a ritual canopy symbolizing the home they will build together.
+          The ceremony will include rituals blessings in both Hebrew and English. In leiu of an altar, Elise and Adam will be gathered under a Chuppah, a ritual canopy symbolizing the home they will build together.
           <br /><br />
           <b>What else is there to do in the area?</b>
           - Asilomar State Beach (right across the street from the hotel!) <br />
