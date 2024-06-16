@@ -181,10 +181,10 @@ export const App = () => {
             <br /><br />
           </Typography>
           <Typography sx={{ fontSize: 24 }}>
-            Havdalah on the Beach June 29, 8:15pm-9:30pm
+            Saturday June 29, 8:15pm-9:30pm | Havdalah on the Beach 
           </Typography>
           <Typography sx={{ fontSize: 16 }}>
-            We will gather at the beach for <a href="https://www.myjewishlearning.com/article/havdalah-taking-leave-of-shabbat/" target="_blank">Havdalah</a>, a brief joyous ceremony in which we welcome in the new week. All are welcome! The sunset is usually stunning here!
+            We will gather at <a href="https://maps.app.goo.gl/4KKGPzSE7qmHFjLQ6" target="_blank">Asilomar State beach</a> for <a href="https://www.myjewishlearning.com/article/havdalah-taking-leave-of-shabbat/" target="_blank">Havdalah</a>, a brief joyous ceremony in which we welcome in the new week. All are welcome! The sunset is usually stunning here!
             <br /><br />
             <b>How to get there:</b> There is a walking path from Asilomar directly to the beach. It is about a <a href="https://maps.app.goo.gl/wNiXWY6JWxZRQTW86" target="_blank">10 minute walk.</a> There is also usually parking along the beach.
             <br /><br />
