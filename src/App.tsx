@@ -143,7 +143,7 @@ export const App = () => {
             </Typography>
             <a href="#RSVP"><Button sx={{ fontSize: 30, background: colors.textGreen }} variant="contained" size="large">RSVP</Button></a>
           </Section>
-        </Box>
+        </Box>        
         <Section>
           <Title>Schedule</Title>
           {guestInfo?.showFridayInvite && (
@@ -173,27 +173,39 @@ export const App = () => {
             Saturday June 29, 4:30pm-7:30pm | Welcome Picnic
           </Typography>
           <Typography sx={{ fontSize: 16 }}>
-            George Washington Park
-            <br />
-            Picnic area by the baseball field, across the street from <a target="_blank" href="https://www.google.com/maps/place/619+Alder+St,+Pacific+Grove,+CA+93950"> 619 Alder St </a>
-            <br />
-            (About a 10 minute walk from Asilomar or a 3 minute drive!)
-            <br />
-            Come for lawn games, drinks and pizza. Casual, comfy (warm) attire!
+            George Washington Park Picnic area by the baseball field, across the street from <a target="_blank" href="https://www.google.com/maps/place/619+Alder+St,+Pacific+Grove,+CA+93950"> 619 Alder St </a>
+            <br /><br/>
+            You're invited to kick off the wedding weekend with a pizza picnic in the park. We'll play some lawn games and board games, hang out, and eat! Attire is casual, please dress warmly! Drop by or join us the whole time, pizza will be delivered around 5:30.
+            <br /><br />
+            <b>How to get there:</b> The park is a <a href="https://maps.app.goo.gl/BtgsXrto5YcT6jpx9" target="_blank">12 minute walk</a> from Asilomar (some parts don't have a sidewalk so please be careful at dusk!) There is also plenty of street parking alongside the park.
+            <br /><br />
           </Typography>
-
-          <br />
+          <Typography sx={{ fontSize: 24 }}>
+            Havdalah on the Beach June 29, 8:15pm-9:30pm
+          </Typography>
+          <Typography sx={{ fontSize: 16 }}>
+            We will gather at the beach for <a href="https://www.myjewishlearning.com/article/havdalah-taking-leave-of-shabbat/" target="_blank">Havdalah</a>, a brief joyous ceremony in which we welcome in the new week. All are welcome! The sunset is usually stunning here!
+            <br /><br />
+            <b>How to get there:</b> There is a walking path from Asilomar directly to the beach. It is about a <a href="https://maps.app.goo.gl/wNiXWY6JWxZRQTW86" target="_blank">10 minute walk.</a> There is also usually parking along the beach.
+            <br /><br />
+          </Typography>
           <Typography sx={{ fontSize: 24 }}>
             Sunday June 30 4pm-10pm | Ceremony and reception
           </Typography>
           <Typography sx={{ fontSize: 16 }}>
-            "The Circle" Meadow behind Hearst Social Hall <br />
+            <a href="https://maps.app.goo.gl/o7UxHNzvYijSP9At5" target="_blank">"The Circle" Meadow</a> behind Hearst Social Hall <br />
             800 Asilomar Ave, Pacific Grove, CA 93950
+            <br /><br />
+            Our wedding will begin at <b>4:00PM</b> with the ceremony in the Meadow. It will be followed by an outdoor cocktail hour and a reception in the Seascape dining hall ending at 10PM. 
+            <br></br><br />A casual bonfire gathering will run 10-11PM back at the cocktail hour patio. 
+            <br></br><br />Semi-formal attire is recommended, please bring layers, it can be cold by the coast! The meadow is grassy and slightly uneven, please consider wearing comfortable shoes.
           </Typography>
         </Section>
         <Divider sx={{ my: 4 }} />
         <Section>
           <Title>FAQ</Title>
+          <b>COVID Safety</b>
+          We kindly ask that you take a Covid test before the first wedding weekend event that you join. This precautionary measure will help us create a safe environment for our immunocompromised guests and all our loved ones to celebrate together. We're providing rapid tests for guests, and they will be available at the Asilomar check-in desk.<br />
           <b>What is the dress code?</b>
           Semi-formal attire recommended. <br />
           For those who’d like a bit more direction: Suits or slacks + button down. Cocktail or summer dress or romper. A tuxedo or ball gown may be overdressed!
