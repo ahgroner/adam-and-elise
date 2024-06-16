@@ -72,6 +72,7 @@ const guestData = [
     "Matt Mistele, Guest",
     "Rachel Wright, Sean Correa",
     "Sarah Cronin, Guest",
+    "Elliya Cutler and Ross Kettleson",
 ];
 
 const guests = guestData.map(guestConcat => {
